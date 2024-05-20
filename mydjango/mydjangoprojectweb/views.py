@@ -13,14 +13,17 @@ def aboutpage (requests):
 def contactpage (requests) :
     return render(requests, 'contact.html')
 
-def create_blog(request):                   # View function to handle incoming HTTP requests and return appropriate responses - here we are handling the creation of blog posts via this view   
-    if request.method == "POST":          # If user has submitted some data through form (i.e., POST method) then perform following operations  
-        form = BlogForm(request.POST)    # Create a Form instance with posted Data from HTTP Request, in other words bind Posted Data to the Django's Modelform i.e., 'BlogForm'. This is how you can get data back into your forms after POST request – which will allow users to fill it out again if they encounter errors on submission
-        if form.is_valid():               # If all fields in Form are valid  
+def create_blog(request):           # View function to handle incoming HTTP requests and return appropriate responses - here we are handling the creation of blog posts via this view   
+    if request.method == "POST":    # If user has submitted some data through form (i.e., POST method) then perform following operations  
+        print("REQUEST IS A POST")  #This bit of debug helps you understand when a POST has called this function vs. just the view being called. In this case a POST was made
+        form = BlogForm(request.POST)  # Create a Form instance with posted Data from HTTP Request, in other words bind Posted Data to the Django's Modelform i.e., 'BlogForm'. This is how you can get data back into your forms after POST request – which will allow users to fill it out again if they encounter errors on submission
+        if form.is_valid():            # If all fields in Form are valid  
             newblog = Blog(title=form.cleaned_data['title'], email=form.cleaned_data['email'], content=form.cleaned_data['content'])  # Create a New blog object but do not save it to the database - here, clean data means that we have checked & cleaned up/normalized our form's input ie., 'Title', and 'Content'. This is how you can access validated user inputs after POST request
-            newblog.save()               # Save this New blog object into SQLite Database – Here, saving to database ensures changes are permanent  
+            newblog.save()               # Save this New blog object into SQLite Database – Here, saving to database ensures changes are permanent
+            return redirect('showblog')  #here we have created a new record in the db, now lets move the user to the list of blogs so they can see the new addition.
     else:
-        form = BlogForm()                # Create an empty, unbound form
+        form = BlogForm()           # Create an empty, unbound form
+        print("REQUEST NOT A POST") #Here is what we will see when a POST was not made and the user just navigates to the create blog view. These print statments ARE YOUR FRIEND if you start to get confused!!
     return render(request,'create_blog.html',{'form':form})   # Return a rendered Response to HTTP Request with our Form which will be displayed on webpage as per 'create_blog.html' template that we have defined in templates directory of myproject/myapp application – here, This is how you can pass form data into your HTML Templates for user interactio  
 
 # In your views, import the models where you have defined them ie., from .models import Blog. This allows us access/functionality of blogs model like creating new blog post etc.. – this way we can interact with database directly through Django ORM & handle all kinds of operations. For example fetching existing data or updating it
@@ -38,9 +41,9 @@ def edit_blog(request, id):
         raise e
         
     if request.method =='GET':
-        return render (request, "edit_blog.html", {"form":BlogForm(instance=blog)})
+        return render (request, "edit_blog.html", {"form":BlogForm(instance=blog)}) #so here if the user is GETting a record to edit we present this result.
     else:
-        form = BlogForm(request.POST, instance=blog)
+        form = BlogForm(request.POST, instance=blog) #if we find ourselves here, we have made changes to a record and we want to submit those changes and return the the list of blogs.
         if form.is_valid():
             form.save()
             return redirect('showblog')
