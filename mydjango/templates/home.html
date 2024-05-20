@@ -9,27 +9,54 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body>
-  <div class="container grid gap-2">
-    <div class="row p-1">
-      <div style="Background:yellow;">
-          <p><h1>The SIMPLEST of BLOG Apps!</h1></p>
-      </div>
-    </div >
-    <div class="row p-1">
-      <div style="Background:magenta">
-        <h2>Options</h2>
+<body class="bg-dark">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Blog Nav</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blogform">Create Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/showblog">Show Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Read Blog</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="row p-1">
-      <div style="Background:cyan">
-          <nav>
-          <a href="/blogform" class="btn btn-primary">Create New Blog</a>
-          <a href="/showblog" class="btn btn-primary">Show All Blogs</a>
-          </nav>
+  </nav>
+
+  <header class="container-fluid">
+    <div class="row">
+      <div class="" style="Background:Orange;">
+          <p><h1>A SIMPLE DJANGO PROJECT</h1></p>
+      </div>
+    </div >
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="bg-primary">
+          <p class="text-dark"><b>KCTCS Educational Project</b></P>
+        </div>
+    </div>
+
+    <div class="row">
+      <div style="Background:grey">
+        <P></p>
       </div>
     </div>
   </div>
+
 </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
