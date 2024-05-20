@@ -1,0 +1,12 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "html.format.contentUnformatted": "",
+    "html.suggest.html5": true,
+    "html.autoClosingTags": false,
+    "editor.linkedEditing": true,
+    "html.format.templating": true,
+    "emmet.includeLanguages": { "django-html": "html"} 
+
+}
